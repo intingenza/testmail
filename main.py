@@ -3,8 +3,7 @@ import sendgrid
 from sendgrid.helpers.mail import *
 
 # Build mail
-sg = 
-sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
 
 from_email = Email(os.environ.get("SENDER"))
 
@@ -19,7 +18,9 @@ personalization = Personalization()
 personalization.add_to(to_email)
 
 email.add_personalization(personalization)
-email.add_content('')
+
+cnt = Content('text/plain', '-')
+email.add_content(cnt)
 
 # Send mail
 try:
